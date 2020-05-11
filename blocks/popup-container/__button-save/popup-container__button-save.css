@@ -1,0 +1,22 @@
+.popup-container__button-save {
+  margin: 12px 0 35px 0;
+ 
+  width: 100%;
+  min-height: 50px;
+  background-color: #000;
+  
+  text-align: center;
+  color: #fff;
+
+  
+  border: 0;
+  border-radius: 2px;
+}
+
+.popup-container__button-save:hover {
+  cursor: pointer;
+  
+  background-color: rgba(0, 0, 0, 0.8);
+
+  transition: .4s ease-in-out;
+}
