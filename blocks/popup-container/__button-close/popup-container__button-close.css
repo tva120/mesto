@@ -22,7 +22,7 @@
   transition: .4s ease-in-out;
 }
 
-@media screen and (max-width: 1023px)  {
+@media screen and (max-width: 767px)  {
   .popup-container__button-close {
     width: 25px;
     height: 25px;

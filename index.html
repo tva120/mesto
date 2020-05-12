@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 
-<body>
+<body class="page">
     <div class="root">
 
         <header class="header">
@@ -22,12 +22,12 @@
                     <div class="profile__info">
                         <div class="profile__author">
                             <h1 class="profile__author-name">Жак-Ив Кусто</h1>
-                            <button class="profile__button-edit" type="button"></button>
+                            <button class="profile__button-edit" type="button" aria-label="Редактировать"></button>
                         </div>
                         <p class="profile__about">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__button-add" type="button"></button>
+                <button class="profile__button-add" type="button" aria-label="Добавить"></button>
             </section>
 
             <section class="elements">
@@ -36,7 +36,7 @@
                     <img class="element__image" alt="Карачаевск" src="./images/4.jpg">
                     <div class="element__places">
                         <h2 class="element__place">Карачаевск</h2>
-                        <button class="element__button" type="button"></button>
+                        <button class="element__button" type="button" aria-label="Лайк"></button>
                     </div>
                     
                 </div>
@@ -45,7 +45,7 @@
                     <img class="element__image" alt="Гора Эльбрус" src="./images/2.jpg">
                     <div class="element__places">
                         <h2 class="element__place">Гора Эльбрус</h2>
-                        <button class="element__button" type="button"></button>
+                        <button class="element__button" type="button" aria-label="Лайк"></button>
                     </div>
                     
                 </div>
@@ -54,7 +54,7 @@
                     <img class="element__image" alt="Домбай" src="./images/3.jpg">
                     <div class="element__places">
                         <h2 class="element__place">Домбай</h2>
-                        <button class="element__button" type="button"></button>
+                        <button class="element__button" type="button" aria-label="Лайк"></button>
                     </div>
                     
                 </div>
@@ -63,7 +63,7 @@
                     <img class="element__image" alt="Гора Эльбрус" src="./images/2.jpg">
                     <div class="element__places">
                         <h2 class="element__place">Гора Эльбрус</h2>
-                        <button class="element__button" type="button"></button>
+                        <button class="element__button" type="button" aria-label="Лайк"></button>
                     </div>
                     
                 </div>
@@ -72,7 +72,7 @@
                     <img class="element__image" alt="Домбай" src="./images/3.jpg">
                     <div class="element__places">
                         <h2 class="element__place">Домбай</h2>
-                        <button class="element__button" type="button"></button>
+                        <button class="element__button" type="button"  aria-label="Лайк"></button>
                     </div>
                     
                 </div>
@@ -81,28 +81,28 @@
                     <img class="element__image" alt="Карачаевск" src="./images/4.jpg">
                     <div class="element__places">
                         <h2 class="element__place">Карачаевск</h2>
-                        <button class="element__button" type="button"></button>
+                        <button class="element__button" type="button" aria-label="Лайк"></button>
                     </div>
                     
                 </div>
             </section>
 
-            <section class="popup popup__edit">
+            <section class="popup">
                 <form class="popup-container" name="form" method="POST" action="#" novalidate>
 
                     <h2 class="popup-container__text">Редактировать профиль</h2>
 
                     <fieldset class="popup-container__info">
 
-                        <input class="popup-container__infoform popup-container__infoform_author" id="author-input" name="author" type="text" placeholder="Автор" minlength="2" maxlength="40" required>
+                        <input class="popup-container__infoform popup-container__infoform_author" id="author-input" name="author" type="text" placeholder="Автор" required>
 
-                        <input class="popup-container__infoform popup-container__infoform_about" id="about-input" name="about" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
+                        <input class="popup-container__infoform popup-container__infoform_about" id="about-input" name="about" type="text" placeholder="О себе" required>
 
-                        <button class="popup-container__button-save" type="submit">Сохранить</button>
+                        <button class="popup-container__button-save" type="submit" aria-label="Сохранить">Сохранить</button>
 
                     </fieldset>
 
-                    <button class="popup-container__button-close" type="reset" aria-label="Close"></button>
+                    <button class="popup-container__button-close" type="reset" aria-label="Закрыть"></button>
                 </form>
             </section>
 

@@ -9,7 +9,8 @@
 
 
 .profile {
- /* min-height: 300px;*/
+  
+  align-items: center;
 
   max-width: 882px;
   margin: 0 auto 42px;
