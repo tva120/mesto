@@ -13,15 +13,19 @@ let profileAbout = content.querySelector('.profile__about');
 
 
 function editForm() {
+
   //Fill the fields from the page to the form
   authorInput.value = profileAuthor.textContent;
   aboutInput.value = profileAbout.textContent;
-  //Change the form with proper classList
-  togglePopup(popupEdit);
+
 };
 
-function togglePopup(popupElement) {
-  popupElement.classList.toggle('popup_opened'); 
+function togglePopup() {
+  popupEdit.classList.toggle('popup_opened'); 
+
+  if (popupEdit.classList.contains('popup_opened')) {
+    editForm();
+  }
 };
 
 //Submit result
@@ -43,8 +47,8 @@ function formSubmitHandler(evt) {
 //Add some events
 
 
-editButton.addEventListener('click', editForm);
-closeButton.addEventListener('click', editForm);
+editButton.addEventListener('click', togglePopup);
+closeButton.addEventListener('click', togglePopup);
 
 popupEdit.addEventListener('submit', formSubmitHandler);
 
