@@ -6,12 +6,15 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, .5);
-  visibility: hidden;
+
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  visibility: hidden;
+  opacity: 0;
+  transition: .2s opacity, .2s visibility ease-out;
 
 }
 
