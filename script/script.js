@@ -11,6 +11,8 @@ const popupEdit = content.querySelector('.popup_edit_info');
 const popupAddPlace = content.querySelector('.popup_add_place');
 const popupPreview = content.querySelector('.popup_show_image');
 
+const popup = content.querySelector('.popup');
+
 let authorInput = content.querySelector('.popup-container__infoform_author');
 let aboutInput = content.querySelector('.popup-container__infoform_about');
 let profileAuthor = content.querySelector('.profile__author-name');
@@ -72,6 +74,14 @@ function togglePopupCommon(popupForm) {
     editForm();
   }
 
+  // Escape listener to close the form
+  if (popupForm.classList.contains('popup_opened')) {
+    document.addEventListener('keydown', closeEsc);
+  }
+  else {
+    document.removeEventListener('keydown', closeEsc);
+  }
+
 };
 
 
@@ -130,6 +140,25 @@ function addSingleCard(name, link) {
 }
 
 
+function overlayClose(evt) {
+  if (evt.target.classList.contains('popup')) {
+
+    evt.target.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeEsc);
+
+  }
+}
+
+function closeEsc(evt) {
+
+  if (evt.key === 'Escape') {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeEsc);
+  };
+
+}
+
+
 //Add some events
 
 
@@ -156,6 +185,12 @@ popupAddPlace.addEventListener('submit', formSubmitPlace);
 
 popupEdit.addEventListener('submit', formSubmitHandler);
 
+// click to close the form
+popupAddPlace.addEventListener('click', overlayClose);
+
+popupEdit.addEventListener('click', overlayClose);
+
+popupPreview.addEventListener('click', overlayClose);
 
 
 //Init cards

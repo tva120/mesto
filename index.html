@@ -42,10 +42,14 @@
                     <fieldset class="popup-container__info">
 
                         <input class="popup-container__infoform popup-container__infoform_author" id="author-input"
-                            name="author" type="text" placeholder="Автор" required>
+                            name="author" type="text" placeholder="Автор" required minlength="2" maxlength="40" pattern="[A-Za-zА-ЯЁа-яё -]{1,}">
+
+                        <span class="popup__error" id="author-input-error"></span>
 
                         <input class="popup-container__infoform popup-container__infoform_about" id="about-input"
-                            name="about" type="text" placeholder="О себе" required>
+                            name="about" type="text" placeholder="О себе" required minlength="2" maxlength="200">
+
+                        <span class="popup__error" id="about-input-error"></span>
 
                         <button class="popup-container__button-save" type="submit"
                             aria-label="Сохранить">Сохранить</button>
@@ -65,11 +69,14 @@
                     <fieldset class="popup-container__info popup-container__info_gray-color">
 
                         <input class="popup-container__infoform popup-container__infoform_place-name" id="place-input"
-                            name="place-name" type="text" placeholder="Название" required>
+                            name="place-name" type="text" placeholder="Название" required minlength="1" maxlength="30">
+
+                        <span class="popup__error" id="place-input-error"></span>
 
                         <input class="popup-container__infoform popup-container__infoform_place-link" id="link-input"
                             name="link" type="url" placeholder="Ссылка на картинку" required>
 
+                        <span class="popup__error" id="link-input-error"></span>
 
                         <button class="popup-container__button-save" type="submit" aria-label="Создать">Создать</button>
 
@@ -109,6 +116,7 @@
         </div>
     </template>
 
+    <script src="./script/validate.js"></script>
     <script src="./script/script.js"></script>
 
 
