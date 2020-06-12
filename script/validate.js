@@ -7,6 +7,14 @@ const toggleInputError = (formSelector, inputElement, errorMessage, formObject) 
     errorElement.classList.toggle(formObject.errorClass, errorMessage);
 };
 
+
+//if something went wrong with inputs
+function hasWrongInput(inputList) {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    });
+};
+
 function toggleButton(inputList, buttonElement, formObject) {
 
     const error = hasWrongInput(inputList);
@@ -16,12 +24,6 @@ function toggleButton(inputList, buttonElement, formObject) {
 
 };
 
-//if something went wrong with inputs
-function hasWrongInput(inputList) {
-    return inputList.some((inputElement) => {
-        return !inputElement.validity.valid;
-    });
-};
 
 const isValid = (formSelector, inputElement, formObject) => {
     toggleInputError(formSelector, inputElement, inputElement.validationMessage, formObject);

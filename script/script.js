@@ -5,18 +5,16 @@ const editButton = content.querySelector('.profile__button-edit');
 //close buttons
 const closeButton = content.querySelector('.popup-container__button-close_info');
 const closePlaceButton = content.querySelector('.popup-container__button-close_place');
-const closePreviewButton = content.querySelector('.popup-container__button-close_preview');
+const closePreviewButton = content.querySelector('.popup-preview__button-close');
 //popup forms
 const popupEdit = content.querySelector('.popup_edit_info');
 const popupAddPlace = content.querySelector('.popup_add_place');
 const popupPreview = content.querySelector('.popup_show_image');
 
-const popup = content.querySelector('.popup');
-
-let authorInput = content.querySelector('.popup-container__infoform_author');
-let aboutInput = content.querySelector('.popup-container__infoform_about');
-let profileAuthor = content.querySelector('.profile__author-name');
-let profileAbout = content.querySelector('.profile__about');
+const authorInput = content.querySelector('.popup-container__infoform_author');
+const aboutInput = content.querySelector('.popup-container__infoform_about');
+const profileAuthor = content.querySelector('.profile__author-name');
+const profileAbout = content.querySelector('.profile__about');
 
 const placeName = content.querySelector('.popup-container__infoform_place-name');
 const placeLink = content.querySelector('.popup-container__infoform_place-link');
@@ -57,6 +55,14 @@ const initialCards = [
   }
 ];
 
+function closeEsc(evt) {
+
+  if (evt.key === 'Escape') {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeEsc);
+  };
+
+}
 
 function editForm() {
 
@@ -83,7 +89,34 @@ function togglePopupCommon(popupForm) {
   }
 
 };
+function addSingleCard(name, link) {
 
+  const elementTemplate = document.querySelector('.card').content;
+  const cardElement = elementTemplate.cloneNode(true);
+
+  cardElement.querySelector('.element__image').setAttribute('src', link);
+  cardElement.querySelector('.element__image').setAttribute('alt', name);
+
+  cardElement.querySelector('.element__place').textContent = name;
+
+  cardElement.querySelector('.element__button').addEventListener('click', (evt) => {
+    evt.target.classList.toggle('element__button_like-active');
+  })
+
+  cardElement.querySelector('.element__trash').addEventListener('click', (evt) => {
+    evt.target.closest('.element').remove();
+  })
+
+  cardElement.querySelector('.element__image').addEventListener('click', (evt) => {
+
+    image.setAttribute('src', evt.target.src);
+    caption.textContent = name;
+    togglePopupCommon(popupPreview);
+
+  })
+
+  return cardElement;
+}
 
 
 //Submit result
@@ -110,34 +143,7 @@ function formSubmitPlace(evt) {
 //Add cards into elements
 
 
-function addSingleCard(name, link) {
 
-  const elementTemplate = document.querySelector('.card').content;
-  const cardElement = elementTemplate.cloneNode(true);
-
-  cardElement.querySelector('.element__image').setAttribute('src', link);
-  cardElement.querySelector('.element__image').setAttribute('alt', name);
-
-  cardElement.querySelector('.element__place').textContent = name;
-
-  cardElement.querySelector('.element__button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__button_like-active');
-  })
-
-  cardElement.querySelector('.element__trash').addEventListener('click', function (evt) {
-    evt.target.closest('.element').remove();
-  })
-
-  cardElement.querySelector('.element__image').addEventListener('click', function (evt) {
-
-    image.setAttribute('src', evt.target.src);
-    caption.textContent = name;
-    togglePopupCommon(popupPreview);
-
-  })
-
-  return cardElement;
-}
 
 
 function overlayClose(evt) {
@@ -149,14 +155,7 @@ function overlayClose(evt) {
   }
 }
 
-function closeEsc(evt) {
 
-  if (evt.key === 'Escape') {
-    document.querySelector('.popup_opened').classList.remove('popup_opened');
-    document.removeEventListener('keydown', closeEsc);
-  };
-
-}
 
 
 //Add some events
