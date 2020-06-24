@@ -1,3 +1,8 @@
+//Import classes from another js files
+
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 //Get operands 
 
 const content = document.querySelector('.content');
@@ -27,6 +32,14 @@ const addCardButton = content.querySelector('.profile__button-add');
 const image = content.querySelector('.popup-preview__picture');
 const caption = content.querySelector('.popup-preview__caption');
 
+const validationConfig = {
+  formSelector: '.popup-container',
+  inputSelector: '.popup-container__infoform',
+  submitButtonSelector: '.popup-container__button-save',
+  inactiveButtonClass: 'popup-container__button-save_inactive',
+  inputErrorClass: 'popup-container__infoform_type_error',
+  errorClass: 'popup__error_active'
+};
 
 const initialCards = [
   {
@@ -88,37 +101,7 @@ function togglePopupCommon(popupForm) {
     document.removeEventListener('keydown', closeEsc);
   }
 
-};
-function addSingleCard(name, link) {
-
-  const elementTemplate = document.querySelector('.card').content;
-  const cardElement = elementTemplate.cloneNode(true);
-
-  cardElement.querySelector('.element__image').setAttribute('src', link);
-  cardElement.querySelector('.element__image').setAttribute('alt', name);
-
-  cardElement.querySelector('.element__place').textContent = name;
-
-  cardElement.querySelector('.element__button').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__button_like-active');
-  })
-
-  cardElement.querySelector('.element__trash').addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  })
-
-  cardElement.querySelector('.element__image').addEventListener('click', (evt) => {
-
-    image.setAttribute('src', evt.target.src);
-    caption.textContent = name;
-    togglePopupCommon(popupPreview);
-
-  })
-
-  return cardElement;
 }
-
-
 //Submit result
 function formSubmitHandler(evt) {
 
@@ -134,13 +117,17 @@ function formSubmitHandler(evt) {
 
 function formSubmitPlace(evt) {
   evt.preventDefault();
-  elements.prepend(addSingleCard(placeName.value, placeLink.value));
+  const item = {};
+  item.name = placeName.value;
+  item.link = placeLink.value;
+  const card = new Card(item, 'card');
+  elements.prepend(card.addSingleCard());
   placeName.value = '';
   placeLink.value = '';
   togglePopupCommon(popupAddPlace);
 }
 
-//Add cards into elements
+
 
 
 
@@ -194,9 +181,17 @@ popupPreview.addEventListener('click', overlayClose);
 
 //Init cards
 
-initialCards.forEach(function (card) {
-  elements.append(addSingleCard(card.name, card.link));
-})
 
 
+initialCards.forEach((item) => {
+  const card = new Card(item, 'card');
+  const cardElement = card.addSingleCard();
+  elements.prepend(cardElement);
+});
+
+const editFormValidator = new FormValidator(validationConfig, popupEdit); 
+editFormValidator.enableValidation();
+
+const addPlaceFormValidator = new FormValidator(validationConfig, popupAddPlace); 
+addPlaceFormValidator.enableValidation();
 
