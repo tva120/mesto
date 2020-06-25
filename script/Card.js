@@ -34,30 +34,42 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__button').addEventListener('click', () => { this._likeHandler(); });
-        this._element.querySelector('.element__trash').addEventListener('click', () => { this._removeHandler(); });
-        this._element.querySelector('.element__image').addEventListener('click', () => { this._openHandler(); });
+        this._elementButton.addEventListener('click', () => { this._likeHandler(); });
+        this._elementTrash.addEventListener('click', () => { this._removeHandler(); });
+        this._elementImage.addEventListener('click', () => { this._openHandler(); });
     }
 
     _likeHandler() {
-        this._element.querySelector('.element__button').classList.toggle('element__button_like-active');
+        this._elementButton.classList.toggle('element__button_like-active');
     }
 
     _removeHandler() {
         this._element.remove();
+        this._element = null;
     }
 
     _openHandler() {
         popupOpenHandler(imageForm);
         popupImage.src = this._link;
+        popupImage.alt = this._name;
         popupTitle.textContent = this._name;
     }    
 
     addSingleCard() {
+        
         this._element = this._getTemplate();
+
+        this._elementButton = this._element.querySelector(".element__button"); 
+        this._elementImage = this._element.querySelector(".element__image"); 
+        this._elementTrash = this._element.querySelector(".element__trash"); 
+
         this._setEventListeners();
-        this._element.querySelector('.element__image').src = this._link;
+        const imageElement = this._element.querySelector('.element__image');
+        imageElement.src = this._link;
+        imageElement.alt = this._name;
         this._element.querySelector('.element__place').textContent = this._name;
+
+        
         return this._element;
     }
 }

@@ -29,8 +29,6 @@ const elements = content.querySelector('.elements'); //this block is used for ca
 
 const addCardButton = content.querySelector('.profile__button-add');
 
-const image = content.querySelector('.popup-preview__picture');
-const caption = content.querySelector('.popup-preview__caption');
 
 const validationConfig = {
   formSelector: '.popup-container',
@@ -85,6 +83,22 @@ function editForm() {
 
 };
 
+//at this place we should reset old mistakes and start our life with place cards from the beginning :)
+function resetErrors(popupForm) {
+  //these are all inputs from the certain form
+  const inputs = Array.from(popupForm.querySelectorAll('.popup-container__infoform'));
+  inputs.forEach(inputElement => {
+      const errorClass = document.querySelector(`#${inputElement.id}-error`);
+      inputElement.classList.remove('popup-container__infoform_type_error');
+      errorClass.classList.remove('popup__error_active');
+      errorClass.textContent = '';
+  });
+  //do not forget to disable save button in case of emergency 
+  const submitButton = popupForm.querySelector('.popup-container__button-save');
+  submitButton.setAttribute('disabled', true);
+  submitButton.classList.add('popup-container__button-save_inactive');
+}
+
 function togglePopupCommon(popupForm) {
 
   popupForm.classList.toggle('popup_opened');
@@ -100,6 +114,12 @@ function togglePopupCommon(popupForm) {
   else {
     document.removeEventListener('keydown', closeEsc);
   }
+
+  //now we have only two forms where we should reset errors 
+  if (!popupForm.classList.contains('popup_show_image'))
+    {        
+        resetErrors(popupForm);
+    }
 
 }
 //Submit result
