@@ -5,15 +5,15 @@ export class UserInfo{
     }
 
     getUserInfo(){
-        const userInfo = {
+
+        return {
             name: this._name.textContent,
             about: this._about.textContent
-        }
-        return userInfo;
+        };
     }
 
-    setUserInfo(input){
-        this._name.textContent = input.author;
-        this._about.textContent = input.about;
+    setUserInfo({author, about}){
+        this._name.textContent = author;
+        this._about.textContent = about;
     }
 }
