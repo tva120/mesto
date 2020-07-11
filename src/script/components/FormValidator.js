@@ -67,15 +67,13 @@ Re: Сброс валидации теперь сделан в классе фу
             inputElement.classList.remove(this._inputErrorClass);
             errorIds.classList.remove(this._errorClass);
             errorIds.textContent = '';
+            inputElement.value = '';
         });
         //do not forget to disable save button in case of emergency 
         const submitButton = this._formElement.querySelector(this._submitButtonSelector);
         submitButton.setAttribute('disabled', true);
         submitButton.classList.add(this._inactiveButtonClass);
 
-        this._inputs.forEach((inputElement) => {        
-            inputElement.value = '';
-        });
 
     }
 }
