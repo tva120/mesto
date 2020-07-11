@@ -71,7 +71,7 @@ function editProfileHandler() {
 
 function addPhotoCardHandler() {
   photoCard.open();
-  photoCard.resetErrors();
+  photoCard.validationObj.resetErrors();
 }
 
 //Add some events

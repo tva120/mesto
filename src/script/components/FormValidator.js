@@ -32,7 +32,7 @@ export class FormValidator {
 
     
 /*При добавлении пользовательской карточки на страницу и повторном открытии формы кнопка "Создать" активна и появляется возможность добавления пустой карточки, такого быть не должно
-Re: Сброс валидации теперь сделан в классе PopupWithForm функцией resetErrors()
+Re: Сброс валидации теперь сделан в классе функцией resetErrors()
 */
     _toggleButton(inputList, buttonElement) {
         buttonElement.classList.toggle(this._inactiveButtonClass, this._hasWrongInput(inputList));
@@ -58,8 +58,21 @@ Re: Сброс валидации теперь сделан в классе Popu
         this._setEventListeners(this._element);
     }
 
-    resetFields() {
-        
+    
+    //at this place we should reset old mistakes and start our life with place cards from the beginning :)
+    resetErrors() {
+
+        this._inputs.forEach(inputElement => {
+            const errorIds = document.querySelector(`#${inputElement.id}-error`);
+            inputElement.classList.remove(this._inputErrorClass);
+            errorIds.classList.remove(this._errorClass);
+            errorIds.textContent = '';
+        });
+        //do not forget to disable save button in case of emergency 
+        const submitButton = this._formElement.querySelector(this._submitButtonSelector);
+        submitButton.setAttribute('disabled', true);
+        submitButton.classList.add(this._inactiveButtonClass);
+
         this._inputs.forEach((inputElement) => {        
             inputElement.value = '';
         });
