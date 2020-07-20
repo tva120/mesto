@@ -31,9 +31,6 @@ export class FormValidator {
     }
 
     
-/*При добавлении пользовательской карточки на страницу и повторном открытии формы кнопка "Создать" активна и появляется возможность добавления пустой карточки, такого быть не должно
-Re: Сброс валидации теперь сделан в классе функцией resetErrors()
-*/
     _toggleButton(inputList, buttonElement) {
         buttonElement.classList.toggle(this._inactiveButtonClass, this._hasWrongInput(inputList));
         buttonElement.disabled = this._hasWrongInput(inputList);

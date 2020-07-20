@@ -1,6 +1,5 @@
 export class Section{
-    constructor( {items, renderer}, containerSelector){
-        this._renderedItems = items.reverse();
+    constructor( {renderer}, containerSelector){
         this._renderer = renderer;
         this._container = containerSelector;
     }
@@ -9,9 +8,8 @@ export class Section{
         this._container.prepend(element);
     }
     
-    addItem(){
-        this._renderedItems.forEach(item => this._renderer(item));
+    addItem(items){
+        items.reverse().forEach(item => this._renderer(item));
     }
-
     
 }

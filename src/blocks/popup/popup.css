@@ -1,5 +1,6 @@
 @import url(./__error/popup__error.css);
 @import url(./__error/popup__error_active.css);
+@import url(./__user-info/popup__user-info.css);
 
 .popup {
   width: 100%;

@@ -1,5 +1,7 @@
 @import url(./__image/element__image.css);
 @import url(./__places/element__places.css);
+@import url(./__likeblock/element__likeblock.css);
+@import url(./__likecount/element__likecount.css);
 @import url(./__place/element__place.css);
 @import url(./__button/element__button.css);
 @import url(./__trash/element__trash.css);
