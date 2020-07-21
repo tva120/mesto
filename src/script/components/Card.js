@@ -44,14 +44,14 @@ export class Card {
 
     _likeCheck() {
         this._likes.some((item) => {
-            if (item._id === 'a2697bbb54506ea8dfa4898d') {
+            if (item._id === this._ownerid) {
                 this._element.querySelector('.element__button').classList.add('element__button_like-active');
             }
         })
     }
 
     _deleteCheck() {
-        if (!(this._owner._id === 'a2697bbb54506ea8dfa4898d')) {
+        if (!(this._owner._id === this._ownerid)) {
             this._element.querySelector('.element__trash').style.display = 'none';
         }
     }
