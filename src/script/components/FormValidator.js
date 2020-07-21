@@ -59,6 +59,8 @@ export class FormValidator {
     //at this place we should reset old mistakes and start our life with place cards from the beginning :)
     resetErrors() {
 
+    
+
         this._inputs.forEach(inputElement => {
             const errorIds = document.querySelector(`#${inputElement.id}-error`);
             inputElement.classList.remove(this._inputErrorClass);

@@ -14,25 +14,6 @@ export class PopupWithForm extends Popup {
         
     }
 
-    open(){
-        super.open();
-        this._errorsList.forEach(error => {
-            error.textContent = '';
-            error.classList.remove(this.validationObj.validationConfig.errorClass);
-        });
-        this._inputList.forEach(input => {
-            input.classList.remove(this.validationObj.validationConfig.inputErrorClass);
-        });
-        if(this._popupSelector.classList.contains('popup_type_info')){
-            this._submitButton.removeAttribute('disabled');
-            this._submitButton.classList.remove(this.validationObj.validationConfig.inactiveButtonClass);
-        }
-        else{
-            this._submitButton.setAttribute('disabled', true);
-            this._submitButton.classList.add(this.validationObj.validationConfig.inactiveButtonClass);
-        }  
-    }
-
     _getInputValues() {
 
         this._formValues = {};
@@ -59,14 +40,6 @@ export class PopupWithForm extends Popup {
 
     setDefaultButton(){
         this._submitButton.textContent = this._defaultText;
-    }
-
-    getCardForDelete(item){
-        this._cardForDelete = item;
-    }
-
-    returnCard(){
-        return (this._cardForDelete);
     }
 
     
